@@ -1,0 +1,84 @@
+# THIS FILE IS GENERATED AUTOMATICALLY FROM THE D-I PO MASTER FILES
+# The master files can be found under packages/po/
+#
+# DO NOT MODIFY THIS FILE DIRECTLY: SUCH CHANGES WILL BE LOST
+#
+# Occitan (post 1500) translation for debian-installer
+# Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
+# This file is distributed under the same license as the debian-installer package.
+# Yannig MARCHEGAY <yannick.marchegay@lokanova.com>, 2006.
+# Cédric VALMARY <cvalmary@yahoo.fr>, 2016.
+# Quentin PAGÈS <quentinantonin@free.fr>, 2020.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: debian-installer sublevel1\n"
+"Report-Msgid-Bugs-To: net-retriever@packages.debian.org\n"
+"POT-Creation-Date: 2019-11-02 20:36+0100\n"
+"PO-Revision-Date: 2020-11-15 18:28+0000\n"
+"Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
+"Language-Team: Occitan (post 1500) <ubuntu-l10n-oci@lists.ubuntu.com>\n"
+"Language: oc\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+
+#. Type: text
+#. Description
+#. Main menu item
+#. Translators: keep below 55 columns
+#. :sl2:
+#: ../download-installer.templates:1001
+msgid "Download installer components"
+msgstr "Telecargar de compausants d’installacion"
+
+#. Type: select
+#. Choices
+#. These are choices of actions so this is, at least in English,
+#. an infinitive form
+#. :sl2:
+#: ../net-retriever.templates:1001
+msgid "Retry"
+msgstr "Tornar ensajar"
+
+#. Type: select
+#. Choices
+#. These are choices of actions so this is, at least in English,
+#. an infinitive form
+#. :sl2:
+#: ../net-retriever.templates:1001
+msgid "Change mirror"
+msgstr "Cambiar de miralh"
+
+#. Type: select
+#. Choices
+#. These are choices of actions so this is, at least in English,
+#. an infinitive form
+#. :sl2:
+#: ../net-retriever.templates:1001
+msgid "Cancel"
+msgstr "Anullar"
+
+#. Type: select
+#. Description
+#. :sl2:
+#: ../net-retriever.templates:1002
+msgid "Downloading a file failed:"
+msgstr "Impossible de telecargar un fichièr :"
+
+#. Type: select
+#. Description
+#. :sl2:
+#: ../net-retriever.templates:1002
+msgid ""
+"The installer failed to download a file from the mirror. This may be a "
+"problem with your network, or with the mirror. You can choose to retry the "
+"download, select a different mirror, or cancel and choose another "
+"installation method."
+msgstr ""
+"Lo programa d’installacion a pas pogut telecargar un fichièr dins lo miralh. "
+"Lo problèma pòt venir de vòstra ret o del miralh. Podètz tornar ensajar de "
+"telecargar, de cambiar de miralh o d’anullar l’operacion per causir un autre "
+"metòde d’installacion."

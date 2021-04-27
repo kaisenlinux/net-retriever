@@ -1,0 +1,95 @@
+# THIS FILE IS GENERATED AUTOMATICALLY FROM THE D-I PO MASTER FILES
+# The master files can be found under packages/po/
+#
+# DO NOT MODIFY THIS FILE DIRECTLY: SUCH CHANGES WILL BE LOST
+#
+# translation of eu.po to Euskara
+# Basque messages for debian-installer.
+# Copyright (C) 2003 Software in the Public Interest, Inc.
+# This file is distributed under the same license as debian-installer.
+# Translations from iso-codes:
+# Copyright (C)
+# Translations from KDE:
+# Piarres Beobide <pi@beobide.net>, 2004-2009, 2011.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2008, 2010.
+# Mikel Olasagasti <hey_neken@mundurat.net>, 2004.
+# Piarres Beobide Egaña <pi@beobide.net>, 2004,2006,2007, 2008, 2009.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2010.
+# Free Software Foundation, Inc., 2002.
+# Alastair McKinstry <mckinstry@computer.org>, 2002.
+# Marcos Goienetxe <marcos_g@infonegocio.com>, 2002.
+# Piarres Beobide <pi@beobide.net>, 2008.
+# Xabier Bilbao <xabidu@gmail.com>, 2008.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eu\n"
+"Report-Msgid-Bugs-To: net-retriever@packages.debian.org\n"
+"POT-Creation-Date: 2019-11-02 20:36+0100\n"
+"PO-Revision-Date: 2020-10-28 20:33+0100\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
+"Language-Team: Basque <librezale@librezale.eus>\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Type: text
+#. Description
+#. Main menu item
+#. Translators: keep below 55 columns
+#. :sl2:
+#: ../download-installer.templates:1001
+msgid "Download installer components"
+msgstr "Deskargatu instalatzailearen osagaiak"
+
+#. Type: select
+#. Choices
+#. These are choices of actions so this is, at least in English,
+#. an infinitive form
+#. :sl2:
+#: ../net-retriever.templates:1001
+msgid "Retry"
+msgstr "Saiatu berriro"
+
+#. Type: select
+#. Choices
+#. These are choices of actions so this is, at least in English,
+#. an infinitive form
+#. :sl2:
+#: ../net-retriever.templates:1001
+msgid "Change mirror"
+msgstr "Aldatu ispilua"
+
+#. Type: select
+#. Choices
+#. These are choices of actions so this is, at least in English,
+#. an infinitive form
+#. :sl2:
+#: ../net-retriever.templates:1001
+msgid "Cancel"
+msgstr "Utzi"
+
+#. Type: select
+#. Description
+#. :sl2:
+#: ../net-retriever.templates:1002
+msgid "Downloading a file failed:"
+msgstr "Huts egin du fitxategia deskargatzean:"
+
+#. Type: select
+#. Description
+#. :sl2:
+#: ../net-retriever.templates:1002
+msgid ""
+"The installer failed to download a file from the mirror. This may be a "
+"problem with your network, or with the mirror. You can choose to retry the "
+"download, select a different mirror, or cancel and choose another "
+"installation method."
+msgstr ""
+"Instalatzaileak huts egin du ispilutik fitxategia deskargatzean. Arazoa egon "
+"liteke sarearekin edo ispiluarekin. Berriro deskargatzen, beste ispilu bat "
+"hautatzen edo utzi eta instalatzeko beste metodo bat aukeratzen saia "
+"zaitezke."
