@@ -28,15 +28,19 @@
 #   Mai Hao Hui <mhh@126.com>, 2001 (translations from galeon)
 # YunQiang Su <wzssyqa@gmail.com>, 2010, 2011, 2012, 2013.
 # Yangfl <mmyangfl@gmail.com>, 2017.
+# Boyuan Yang <073plan@gmail.com>, 2018, 2019, 2020.
+# 玉堂白鹤 <yjwork@qq.com>, 2020.
+# TTT DEAL <ikmn2jlt@linshiyouxiang.net>, 2021.
+# Wenbin Lv <wenbin816@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: debian-installer\n"
 "Report-Msgid-Bugs-To: net-retriever@packages.debian.org\n"
 "POT-Creation-Date: 2019-11-02 20:36+0100\n"
-"PO-Revision-Date: 2017-06-11 18:20+0800\n"
-"Last-Translator: Yangfl <mmyangfl@gmail.com>\n"
-"Language-Team:  <debian-l10n-chinese@lists.debian.org>\n"
+"PO-Revision-Date: 2022-04-17 17:12+0000\n"
+"Last-Translator: Wenbin Lv <wenbin816@gmail.com>\n"
+"Language-Team: <debian-l10n-chinese@lists.debian.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +72,7 @@ msgstr "重试"
 #. :sl2:
 #: ../net-retriever.templates:1001
 msgid "Change mirror"
-msgstr "更换镜像"
+msgstr "更换镜像站点"
 
 #. Type: select
 #. Choices
@@ -96,6 +100,6 @@ msgid ""
 "download, select a different mirror, or cancel and choose another "
 "installation method."
 msgstr ""
-"安装程序无法从镜像站下载文件。这可能是您的网络问题，也可能是镜像网站的错误。"
-"您可以选择重新下载，或者使用别的镜像网站，也可以选择取消并改用其他的安装方"
-"式。"
+"安装程序无法从镜像站点下载文件。这可能是您的网络问题，也可能是镜像站点有问"
+"题。您可以选择重新下载，或者使用别的镜像站点，也可以选择取消并改用其他的安装"
+"方式。"

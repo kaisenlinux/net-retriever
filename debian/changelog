@@ -1,3 +1,18 @@
+net-retriever (1.56+kaisen1) kaisen-packages; urgency=medium
+
+  * Import new upstream release
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Mon, 15 Aug 2022 14:36:24 +0100
+
+net-retriever (1.56) unstable; urgency=medium
+
+  * Team upload
+
+  [ Updated translations ]
+  * Simplified Chinese (zh_CN.po) by Wenbin Lv
+
+ -- Holger Wansing <hwansing@mailbox.org>  Sat, 28 May 2022 15:32:34 +0200
+
 net-retriever (1.55+kaisen1) kaisen-packages; urgency=medium
 
   * Replace debian-archive-keyring-udeb by kaisen-archive-keyring-udeb
