@@ -1,3 +1,19 @@
+net-retriever (1.57+kaisen1) kaisen-packages; urgency=medium
+
+  * Import the new upstream release
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Tue, 22 Nov 2022 16:23:47 +0100
+
+net-retriever (1.57) unstable; urgency=medium
+
+  * Team upload
+
+  [ Ian Campbell ]
+  * allow preseeding a URL (apt-setup/_DEVEL_/repository) from which to
+    retrieve development udebs.
+
+ -- Philip Hands <phil@hands.com>  Mon, 31 Oct 2022 10:56:29 +0100
+
 net-retriever (1.56+kaisen1) kaisen-packages; urgency=medium
 
   * Import new upstream release

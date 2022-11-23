@@ -16,11 +16,32 @@ db_get mirror/$protocol/hostname
 hostname="$RET"
 db_get mirror/$protocol/directory
 directory="$RET"
+db_get apt-setup/_DEVEL_/repository && {
+	de_debed="${RET#deb }"
+	dev_url="${de_debed%% *}"
+}
 
 keyring=/usr/share/keyrings/archive.gpg
+if [ -n "$dev_url" ]; then
+	dev_keyring=${keyring%/*}/_DEVEL_.gpg
+	db_get apt-setup/_DEVEL_/key
+	printf '%s' "${RET#base64://}" | base64 -d > ${dev_keyring}
+fi
 
 fetch() {
-	fetch-url -c "${protocol}://${hostname}${directory}/$1" "$2"
+	case $1 in
+	    @@devel@@*)
+			if [ -z "$dev_url" ]; then
+				error "fetch of '$1' with no 'apt-setup/_DEVEL_/repository' active -- something untoward is going on"
+			fi
+			log "devel: $@"
+			fetch-url -c "${dev_url}/${1#@@devel@@}" "$2"
+			;;
+	    *)
+			log "regular: $@"
+			fetch-url -c "${protocol}://${hostname}${directory}/$1" "$2"
+			;;
+	esac
 }
 
 # Note: callers are expected to check for non-empty strings in return,
@@ -74,6 +95,30 @@ checkmatch() {
 	done
 }
 
+# expand_packages()
+# takes a Packages filename, its extension (and the dev_prefix)
+# and applies the approapriate decompressor (or none) -- output to stdout
+# dev_prefix adds a magic prefix for later use in fetch for the dev repo.
+expand_packages() {
+	Packages=$1   ; shift
+	ext=$1        ; shift
+	dev_prefix=$1 ; shift
+
+	local ZCAT;
+
+	case "$ext" in
+		'')    ZCAT=cat ;;
+		'.gz') ZCAT=zcat ;;
+		'.xz') ZCAT=xzcat ;;
+	esac
+
+	if [ "@@devel@@" = "$dev_prefix" ] ; then
+		$ZCAT "$Packages" | sed -e 's/^Filename: /&@@devel@@/g'
+	else
+		$ZCAT "$Packages"
+	fi
+}
+
 read_gpg_status() {
 	while read prefix keyword rest; do
 		[ "$prefix" = '[GNUPG:]' ] || continue
@@ -107,55 +152,59 @@ case "$cmd" in
 	fi
 	codename="$RET"
 
-	Release="/tmp/net-retriever-$$-Release"
-	fetch "dists/$codename/Release" "$Release" || exit $?
-	# If gpgv and a keyring are installed, authentication is
-	# mandatory by default.
-	if type gpgv >/dev/null && [ -f "$keyring" ]; then
-		if db_get debian-installer/allow_unauthenticated && [ "$RET" = true ]; then
-			log "Not verifying Release signature: unauthenticated mode enabled"
+	for dev_prefix in "" ${dev_url:+@@devel@@} ; do
+		Release="/tmp/${dev_prefix}net-retriever-$$-Release"
+		fetch "${dev_prefix}dists/$codename/Release" "$Release" || exit $?
+		# If gpgv and a keyring are installed, authentication is
+		# mandatory by default.
+		if type gpgv >/dev/null && [ -f "$keyring" ]; then
+			if db_get debian-installer/allow_unauthenticated && [ "$RET" = true ]; then
+				log "Not verifying Release signature: unauthenticated mode enabled"
+			else
+				if ! fetch "${dev_prefix}dists/$codename/Release.gpg" "$Release.gpg"; then
+					error "dists/$codename/Release is unsigned."
+				fi
+				if [ -z "$dev_prefix" ]; then
+					k="$keyring"
+				else
+					k="$dev_keyring"
+				fi
+				if ! log-output -t net-retriever --pass-stdout \
+					gpgv --status-fd 1 --keyring "$k" \
+					--ignore-time-conflict \
+					"$Release.gpg" "$Release" | read_gpg_status; then
+					error "Bad signature on $Release."
+				fi
+			fi
 		else
-			if ! fetch "dists/$codename/Release.gpg" "$Release.gpg"; then
-				error "dists/$codename/Release is unsigned."
-			fi
-			if ! log-output -t net-retriever --pass-stdout \
-			     gpgv --status-fd 1 --keyring "$keyring" \
-			     --ignore-time-conflict \
-			     "$Release.gpg" "$Release" | read_gpg_status; then
-				error "Bad signature on $Release."
-			fi
+			log "Not verifying Release signature: gpgv not available"
 		fi
-	else
-		log "Not verifying Release signature: gpgv not available"
-	fi
 
-	ARCH=`udpkg --print-architecture`
-	components="`grep ^Components: $Release | cut -d' ' -f2-`"
-	ret=1
-	if [ -z "$components" ]; then
-		error "No components listed in $Release."
-	fi
-	for comp in $components; do
-		for ext in '.xz' '.gz' ''; do
-			pkgfile="$comp/debian-installer/binary-$ARCH/Packages$ext"
-			line=`grep $pkgfile\$ $Release 2>/dev/null`
-			if [ $? != 0 ]; then
-				continue
-			fi
-			Packages="/tmp/net-retriever-$$-Packages"
-			rm -f "$Packages"
-			fetch "dists/$codename/$pkgfile" "$Packages" || continue
-			checkmatch "$Release" "$Packages" "$pkgfile"
-			if [ "$ext" = '' ]; then
-				cat "$Packages" >> "$1"
-			elif [ "$ext" = .gz ]; then
-				zcat "$Packages" >> "$1"
-			elif [ "$ext" = .xz ]; then
-				xzcat "$Packages" >> "$1"
-			fi
-			ret=0
-			break
+		ARCH=`udpkg --print-architecture`
+		components="`grep ^Components: $Release | cut -d' ' -f2-`"
+		ret=1
+		if [ -z "$components" ]; then
+			error "No components listed in $Release."
+		fi
+		for comp in $components; do
+			for ext in '.xz' '.gz' ''; do
+				pkgfile="$comp/debian-installer/binary-$ARCH/Packages$ext"
+				line=`grep $pkgfile\$ $Release 2>/dev/null`
+				if [ $? != 0 ]; then
+					continue
+				fi
+				Packages="/tmp/${dev_prefix}net-retriever-$$-Packages"
+				rm -f "$Packages"
+				[ -z "$dev_prefix" ] || log "Checking $dev_url for DevelPackages"
+				fetch "${dev_prefix}dists/$codename/$pkgfile" "$Packages" || continue
+				[ -z "$dev_prefix" ] || log "Got devel Packages from dists/$codename/$pkgfile"
+				checkmatch "$Release" "$Packages" "$pkgfile"
+				expand_packages "$Packages" "$ext" "$dev_prefix" >> "$1"
+				ret=0
+				break
+			done
 		done
+		[ "0" = "$ret" ] || exit $ret
 	done
 	exit $ret
 	;;
