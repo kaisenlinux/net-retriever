@@ -2,16 +2,15 @@ Source: net-retriever
 Section: debian-installer
 Priority: optional
 XSBC-Original-Maintainer: Debian Install System Team <debian-boot@lists.debian.org>
-Maintainer: Kevin Chevreuil - Kaisen
+Maintainer: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
 Build-Depends: debhelper (>= 9)
-Build-Depends-Indep: dpkg-dev (>= 1.7.0)
 Vcs-Browser: https://gitlab.com/kaisenlinux/packages/net-retriever
 Vcs-Git: https://gitlab.com/kaisenlinux/packages/net-retriever.git
 
 Package: net-retriever
 Package-Type: udeb
 Architecture: all
-Depends: ${misc:Depends}, choose-mirror, configured-network, di-utils (>= 1.58), gpgv-udeb, kaisen-archive-keyring-udeb
+Depends: ${misc:Depends}, choose-mirror, configured-network, di-utils, gpgv-udeb, kaisen-archive-keyring-udeb
 Provides: retriever
 Description: Fetch modules from the Internet
  This is a retriever that uses wget to fetch files over http or ftp.
@@ -19,6 +18,6 @@ Description: Fetch modules from the Internet
 Package: download-installer
 Package-Type: udeb
 Architecture: all
-Depends: ${misc:Depends}, net-retriever, anna (>= 1.07)
+Depends: ${misc:Depends}, net-retriever, anna
 XB-Installer-Menu-Item: 2300
 Description: Download installer components

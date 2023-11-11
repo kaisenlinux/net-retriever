@@ -9,6 +9,9 @@
 #
 # Håvard Korsvoll <korsvoll@skulelinux.no>, 2004, 2005, 2006, 2007, 2008.
 # Eirik U. Birkeland <eirbir@gmail.com>, 2010.
+# Allan Nordhøy <epost@anotheragency.no>, 2017.
+# Alexander Jansen <bornxlo@gmail.com>, 2018.
+# aujawindar <eivind.odegard@sogn.no>, 2022.
 #
 # Translations from iso-codes:
 #   Alastair McKinstry <mckinstry@computer.org>, 2001.
@@ -24,8 +27,8 @@ msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: net-retriever@packages.debian.org\n"
 "POT-Creation-Date: 2019-11-02 20:36+0100\n"
-"PO-Revision-Date: 2017-11-24 15:19+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2023-05-17 23:53+0000\n"
+"Last-Translator: Yngve Spjeld-Landro <l10n@landro.net>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "Language: nn\n"
 "MIME-Version: 1.0\n"
@@ -89,4 +92,4 @@ msgstr ""
 "Installasjonsprogrammet klarte ikkje å laste ned ei fil frå nettarkivet. "
 "Dette kan vere eit problem med nettverket ditt eller med nettarkivet. Du kan "
 "velje å prøve å laste ned fila på ny, velje eit anna nettarkiv eller avbryte "
-"og velje ein anna installasjonsmetode."
+"og velje ein annan installasjonsmetode."
